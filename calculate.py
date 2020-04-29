@@ -4,7 +4,7 @@ import argparse
 
 arg = argparse.ArgumentParser()
 
-roots = "./05"
+roots = "../05"
 
 arg.add_argument("-f", "--folder", default=roots)
 

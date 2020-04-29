@@ -12,9 +12,9 @@ def getFiles(path, suffix):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--data', '-d', default='./05',
+parser.add_argument('--data', '-d', default='../05',
                     help='data path')
-parser.add_argument('--label', '-l', default='./results', help='label path')
+parser.add_argument('--label', '-l', default='../results', help='label path')
 
 arg = parser.parse_args()
 

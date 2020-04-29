@@ -17,8 +17,8 @@ def getFiles(path, suffix):
 # gt_label_filenames = []
 # pred_label_filenames = []
 
-DEFAULT_DATA_DIR = './05'
-DEFAULT_PRED_DIR = './results'
+DEFAULT_DATA_DIR = '../05'
+DEFAULT_PRED_DIR = '../results'
 NUM_CLASSES = 13
 
 args = argparse.ArgumentParser()
@@ -82,13 +82,18 @@ print("Overall accuracy: {0}".format(
 
 print("Class IoU:")
 iou_list = []
+Acc list = []
+print('class\tiou\tacc')
 for i in range(13):
     if (gt_classes[i] == 0):
         iou = 0.0
+        acc = 0.0
     else:
         iou = true_positive_classes[i] / \
-            float(gt_classes[i]+positive_classes[i]-true_positive_classes[i])
-    print("  {}".format(iou))
+            float(gt_classes[i] + positive_classes[i] -
+                  true_positive_classes[i])
+        acc = float(true_positive_classes[i])/float(positive_classes[i])
+    print("  {}:\t{}\t{}".format(class_name, iou, acc))
     iou_list.append(iou)
 
 print("Average IoU: {}".format(sum(iou_list)/13.0))
