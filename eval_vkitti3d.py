@@ -38,12 +38,10 @@ pred_filelist = getFiles(Args.pred, '.labels')
 gt_filelist = []
 
 for files in pred_filelist:
-    print(files)
     name = files.split(".labels")[0].split("\\")[-1]
     gt_dir = os.path.join(Args.data_dir, name + ".npy")
     if os.path.exists(gt_dir):
         gt_filelist.append(gt_dir)
-        print(gt_dir)
 
 num_file = len(pred_filelist)
 num_gt = len(gt_filelist)
@@ -82,8 +80,8 @@ print("Overall accuracy: {0}".format(
 
 print("Class IoU:")
 iou_list = []
-Acc list = []
-print('class\tiou\tacc')
+acc_list = []
+print('class\tiou\t\tacc')
 for i in range(13):
     if (gt_classes[i] == 0):
         iou = 0.0
@@ -93,7 +91,9 @@ for i in range(13):
             float(gt_classes[i] + positive_classes[i] -
                   true_positive_classes[i])
         acc = float(true_positive_classes[i])/float(positive_classes[i])
-    print("  {}:\t{}\t{}".format(class_name, iou, acc))
+    print("{}:\t{}\t\t{}".format(i, iou, acc))
     iou_list.append(iou)
+    acc_list.append(acc)
 
-print("Average IoU: {}".format(sum(iou_list)/13.0))
+print("Average IoU: {}".format(sum(iou_list) / 13.0))
+print("mean Acc:{}".format(sum(acc_list)/13.0))
