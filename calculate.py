@@ -12,10 +12,10 @@ Arg = arg.parse_args()
 
 root = Arg.folder
 
-if os.path.exists("filelist.txt"):
-    os.remove("filelist.txt")
+if os.path.exists("test_file_dict"):
+    os.remove("test_file_dict")
 
-file = open("filelist.txt", mode="w")
+file = open("test_file_dict", mode="w")
 
 
 def getFiles(path, suffix):
@@ -27,7 +27,7 @@ for sublists in sublist:
     data = np.load(sublists)
     strs = sublists.split('.npy')[0].split('\\')[-1]
     print(strs)
-    strs = "\""+strs+"\": ["+str(np.size(data, axis=0))+", \"" + strs+"\"],"
+    strs = strs+','+str(data.shape[0])
     file.writelines(strs+'\n')
 
 
